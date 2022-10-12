@@ -36,22 +36,8 @@ namespace Assessment.Test
 
             var items = testlet.Randomize();
             var randomizedItems = testlet.Randomize();
-
-            Assert.All(items, item => {
-                var itemIndex = items.IndexOf(item);
-                var itemRandomizedIndex = randomizedItems.IndexOf(item);
-
-                for (int i = 0; i < 10000; i++)
-                {
-                    if (itemIndex != itemRandomizedIndex)
-                    {
-                        break;
-                    }
-                    randomizedItems = testlet.Randomize();
-                    itemRandomizedIndex = randomizedItems.IndexOf(item);
-                }
-                Assert.NotEqual(itemIndex, itemRandomizedIndex);
-            });
+            
+            Assert.NotEqual(items, randomizedItems);           
         }
 
         private Testlet CreateTestlet(int numberOfPretestItems = Testlet.NUMBER_OF_PRETEST_ITEMS, int numberOfOperationalItems = Testlet.NUMBER_OF_OPERATIONAL_ITEMS)
